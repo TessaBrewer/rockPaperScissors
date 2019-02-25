@@ -6,8 +6,29 @@ public class rockPaperScissors
 		Scanner input = new Scanner(System.in);
 		ArrayList<ternary> humanMoveHistory = new ArrayList<ternary>;
 		ArrayList<ternary> winHistory = new ArrayList<ternary>;
+		System.out.println("0 quit\n1 rock\n2 paper\n3 scissor");
+		
+		ternary userChoice = new ternary();
+		userChoice.set(userInput);
+		ternary robot = ai(winHistory, humanMoveHistory);
 	}
-	public static ternary ai(ArrayList<ternary> winHistory, ArrayList<ternary> humanMoveHistory) //-1 = rock, 0 = paper, 1 = scissors
+
+	public static int userInput(Scanner input)
+	{
+		int userInput = input.nextInt();
+		if(!userInput >= 0 && userInput <= 3)
+		{
+			throw(new IllegalArgumentException("Invalid input");
+		}else if(userInput = 0)
+		{
+			System.exit(0);
+		}else
+		{
+			userInput -= 2;
+		}
+	}
+
+	public static ternary ai(ArrayList<ternary> winHistory, ArrayList<ternary> humanMoveHistory) //-1 = rock, 0 = paper, 1 = scissor
 	{
 		ternary output = new ternary;
 		if(winHistory.size() > 1)
@@ -18,25 +39,30 @@ public class rockPaperScissors
 			{
 				output.set(lastMove.get()); //returns what would've lost to your last 2 moves (assumes you won't do it thrice)
 				output.sub();
-				return output.get();
+				return output;
 			}else if(winHistory.get(winHistory.size() - 1).get() == -1) //assumes user repeat and returns what would win against that
 			{
 				ouput.set(lastMove.get());
 				output.sub();
-				return output.get();
+				return output;
 			}
 		}else if(winHistory.size() == 1)
 		{
-			do stuff
+			if(winHistory.get(winHistory.size() - 1) == -1) //assumes a repeat
+			{
+				lastMove.add();
+				return lastMove;
+			}
 		}else if(winHistory.size() == 0)
 		{
-			do stuff
+			output.set(0);
+			return output;;
 		}
 		/*
-			Start with paper
-			check the past 2 moves (if same then play what would lose to that)
-			if lose then predict a repeat
-			if win then assume they assume a repeat
+			Start with paper *
+			check the past 2 moves (if same then play what would lose to that) *
+			if lose then predict a repeat *
+			if win then assume they assume a change (assume they play what would've won against your last move)
 			*** Impliment a NN ASAP ***
 		*/
 	}
