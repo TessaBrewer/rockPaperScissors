@@ -76,6 +76,11 @@ public class ternary //-1, 0, and 1
 {
 	Random random = new Random();
 	private int whatIsStored = 0;
+	
+	public ternary(int start)
+	{
+		set(start);
+	}
 
 	public static void set(int i) //stores a valid ternary value
 	{
