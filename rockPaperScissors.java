@@ -56,7 +56,7 @@ public class rockPaperScissors
 		}else if(winHistory.size() == 0)
 		{
 			output.set(0);
-			return output;;
+			return output;
 		}
 		/*
 			Start with paper *
