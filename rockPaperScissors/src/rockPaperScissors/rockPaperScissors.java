@@ -52,15 +52,15 @@ public class rockPaperScissors
 			switch(winLose(userChoice, robot).get())
 			{
 				case 1:
-					System.out.print("\nWin\n--------------------");
+					System.out.print("\nWin\n--------------------\n");
 					humanWins++;
 					break;
 				case 0:
-					System.out.print("\nTie\n--------------------");
+					System.out.print("\nTie\n--------------------\n");
 					ties++;
 					break;
 				case -1:
-					System.out.print("\nLose\n--------------------");
+					System.out.print("\nLose\n--------------------\n");
 					robotWins++;
 					break;
 			}
@@ -103,7 +103,7 @@ public class rockPaperScissors
 	public static void quit()
 	{
 		System.out.println("--------------------");
-		System.out.println(humanWins + ":" + ties + "robotWins");
+		System.out.println(humanWins + ":" + ties + ":" + robotWins);
 		System.exit(0);
 	}
 }
