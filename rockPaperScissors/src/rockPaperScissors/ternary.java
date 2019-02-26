@@ -1,109 +1,81 @@
 package rockPaperScissors;
 import java.util.*;
-public class rockPaperScissors
+public class ternary //-1, 0, and 1
 {
-	public static int humanWins = 0;
-	public static int robotWins = 0;
-	public static int ties = 0;
-	public static void main(String [] args)
-	{		
-		Scanner input = new Scanner(System.in);
-		ArrayList<ternary> humanMoveHistory = new ArrayList<ternary>();
-		ArrayList<ternary> winHistory = new ArrayList<ternary>();
-		System.out.println("0 quit\n1 rock\n2 paper\n3 scissor");
-		
-		while(true)
+	static Random random = new Random();
+	private static int whatIsStored = 0;
+	
+	public ternary(int start)
+	{
+		set(start);
+	}
+	
+	public ternary()
+	{
+	}
+
+	public void set(int i) //stores a valid ternary value
+	{
+		if(i == -1 || i == 0 || i == 1)
 		{
-			ternary userChoice = new ternary(0);
-			userChoice.set(userInput(input));
-			ternary robot = ai.logic(winHistory, humanMoveHistory);
-			winHistory.add(winLose(userChoice, robot));
-			humanMoveHistory.add(userChoice);
-			System.out.print("\nYou: ");
-			
-			switch(userChoice.get())
-			{
-				case 1:
-					System.out.print("scissor");
-					break;
-				case 0:
-					System.out.print("paper");
-					break;
-				case -1:
-					System.out.print("rock");
-					break;
-			}
-			
-			System.out.print("\nThem: ");
-			
-			switch(robot.get())
-			{
-				case 1:
-					System.out.print("scissor");
-					break;
-				case 0:
-					System.out.print("paper");
-					break;
-				case -1:
-					System.out.print("rock");
-					break;
-			}
-			
-			switch(winLose(userChoice, robot).get())
-			{
-				case 1:
-					System.out.print("\nWin\n--------------------\n");
-					humanWins++;
-					break;
-				case 0:
-					System.out.print("\nTie\n--------------------\n");
-					ties++;
-					break;
-				case -1:
-					System.out.print("\nLose\n--------------------\n");
-					robotWins++;
-					break;
-			}
+			whatIsStored = i;
+		}else
+		{
+			throw(new IllegalArgumentException("-1, 1, and 0 only"));
 		}
 	}
 
-	public static int userInput(Scanner input)
+	public void add() //adds 1, loops
 	{
-		int userInput = input.nextInt();
-		if(userInput < 0 || userInput > 3)
-		{
-			throw(new IllegalArgumentException("Invalid input"));
-		}else if(userInput == 0)
-		{
-			quit();
-		}else
-		{
-			userInput -= 2;
-			return userInput;
-		}
-		return userInput;
+		whatIsStored ++;
+		if(whatIsStored == 2)
+			whatIsStored = -1;
+	}
+
+	public void sub() //subtracts 1, loops
+	{
+		whatIsStored --;
+		if(whatIsStored == -2)
+			whatIsStored = 1;
+	}
+
+	public int get() //returns the stored value
+	{
+		return whatIsStored;
 	}
 	
-	public static ternary winLose(ternary human, ternary robot) //-1 = lose, 0 = tie, 1 = win
+	public int get	(int offset)
 	{
-		ternary output = new ternary();
-		if(human.get(-1) == robot.get())
+		if(offset > 0)
 		{
-			output.add();
-			return output;
+			for(int i = 0; i < offset; i++)
+			{
+				whatIsStored++;
+				if(whatIsStored == 2)
+					whatIsStored = -1;
+			}
+			return whatIsStored;
 		}
-		if(robot.get(-1) == human.get())
+		if(offset < 0)
 		{
-			output.sub();
-			return output;
+			for(int i = 0; i > offset; i--)
+			{
+				whatIsStored--;
+				if(whatIsStored == -2)
+					whatIsStored = 1;
+			}
+			return whatIsStored;
 		}
-		return output;
+		return whatIsStored;
 	}
-	
-	public static void quit()
+
+	public void inv() //inverts the ternary (1 becomes -1, -1 becomes 1, 0 stays the same)
 	{
-		System.out.println("--------------------");
-		System.out.println(humanWins + ":" + ties + "robotWins");
-		System.exit(0);
+		whatIsStored *= -1;
+	}
+
+	public static int rand() //returns a random valid ternary value
+	{
+		return random.nextInt(3) - 1;
 	}
 }
