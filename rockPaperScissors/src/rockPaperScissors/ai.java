@@ -9,14 +9,14 @@ public class ai
 		ternary output = new ternary(0);
 		switch(winHistory.size())
 		{
-			default:
-				output = allElse(winHistory, humanMoveHistory);
-				return output;
-			case 1:
+			case 0:
 				output = first(winHistory, humanMoveHistory);
 				return output;
-			case 2:
+			case 1:
 				output = second(winHistory, humanMoveHistory);
+				return output;
+			default:
+				output = allElse(winHistory, humanMoveHistory);
 				return output;
 		}
 		/*
