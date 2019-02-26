@@ -9,6 +9,10 @@ public class ternary //-1, 0, and 1
 	{
 		set(start);
 	}
+	
+	public ternary()
+	{
+	}
 
 	public void set(int i) //stores a valid ternary value
 	{
