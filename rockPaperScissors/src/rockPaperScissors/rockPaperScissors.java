@@ -86,7 +86,7 @@ public class rockPaperScissors
 	
 	public static ternary winLose(ternary human, ternary robot) //-1 = lose, 0 = tie, 1 = win
 	{
-		ternary output = new ternary();
+		ternary output = new ternary(0);
 		if(human.get(-1) == robot.get())
 		{
 			output.add();
