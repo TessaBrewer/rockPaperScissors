@@ -8,6 +8,7 @@ public class rockPaperScissors
 	public static void main(String [] args)
 	{		
 		Scanner input = new Scanner(System.in);
+		
 		ArrayList<ternary> humanMoveHistory = new ArrayList<ternary>();
 		ArrayList<ternary> winHistory = new ArrayList<ternary>();
 		System.out.println("0 quit\n1 rock\n2 paper\n3 scissor");
@@ -15,12 +16,18 @@ public class rockPaperScissors
 		while(true)
 		{
 			ternary userChoice = new ternary(0);
+			
 			userChoice.set(userInput(input));
+			System.out.println(userChoice.get());
+			
 			ternary robot = ai.logic(winHistory, humanMoveHistory);
+			
+			System.out.println(userChoice.get() + " " + robot.get());
 			winHistory.add(winLose(userChoice, robot));
 			humanMoveHistory.add(userChoice);
 			System.out.print("\nYou: ");
 			
+			System.out.print(userChoice.get() + " " + robot.get());
 			switch(userChoice.get())
 			{
 				case 1:
@@ -81,23 +88,18 @@ public class rockPaperScissors
 			userInput -= 2;
 			return userInput;
 		}
+		System.out.print(userInput);
 		return userInput;
 	}
 	
 	public static ternary winLose(ternary human, ternary robot) //-1 = lose, 0 = tie, 1 = win
 	{
+		System.out.print(human.get() + " ");
+		System.out.print(robot.get());
 		ternary output = new ternary(0);
-		if(human.get(-1) == robot.get())
-		{
-			output.add();
-			return output;
-		}
-		if(robot.get(-1) == human.get())
-		{
-			output.sub();
-			return output;
-		}
+		output.add(human.get() - robot.get());//if human is 1 larger than robot than human wins (ie output == 1)
 		return output;
+		
 	}
 	
 	public static void quit()
