@@ -28,11 +28,15 @@ public class ternary //-1, 0, and 1
 	public void add() //adds 1
 	{
 		whatIsStored ++;
+		if(whatIsStored >= 2)
+			whatIsStored = -1;
 	}
 
 	public void sub() //subtracts 1
 	{
 		whatIsStored --;
+		if(whatIsStored <= -2)
+			whatIsStored = 1;
 	}
 
 	public void add(int amount) //adds amount, loops
@@ -42,12 +46,15 @@ public class ternary //-1, 0, and 1
 			for(int i = 0; i < amount; i++)
 			{
 				whatIsStored++;
-				if(whatIsStored == 2)
+				if(whatIsStored >= 2)
 					whatIsStored = -1;
 			}
 		}
 		if(amount < 0)
+		{
+			amount *= -1;
 			sub(amount);
+		}
 	}
 	
 	public void sub(int amount) //adds amount, loops
@@ -57,7 +64,7 @@ public class ternary //-1, 0, and 1
 			for(int i = 0; i < amount; i++)
 			{
 				whatIsStored--;
-				if(whatIsStored == -2)
+				if(whatIsStored <= -2)
 					whatIsStored = 1;
 			}
 		}
@@ -70,7 +77,7 @@ public class ternary //-1, 0, and 1
 		return whatIsStored;
 	}
 	
-	public int get	(int offset)
+	public int get(int offset)
 	{
 		if(offset > 0)
 		{
