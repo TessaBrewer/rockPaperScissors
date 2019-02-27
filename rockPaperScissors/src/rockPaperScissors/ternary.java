@@ -3,7 +3,7 @@ import java.util.*;
 public class ternary //-1, 0, and 1
 {
 	static Random random = new Random();
-	private static int whatIsStored = 0;
+	public int whatIsStored = 0;
 	
 	public ternary(int start)
 	{
@@ -25,20 +25,46 @@ public class ternary //-1, 0, and 1
 		}
 	}
 
-	public void add() //adds 1, loops
+	public void add() //adds 1
 	{
 		whatIsStored ++;
-		if(whatIsStored == 2)
-			whatIsStored = -1;
 	}
 
-	public void sub() //subtracts 1, loops
+	public void sub() //subtracts 1
 	{
 		whatIsStored --;
-		if(whatIsStored == -2)
-			whatIsStored = 1;
 	}
 
+	public void add(int amount) //adds amount, loops
+	{
+		if(amount > 0)
+		{
+			for(int i = 0; i < amount; i++)
+			{
+				whatIsStored++;
+				if(whatIsStored == 2)
+					whatIsStored = -1;
+			}
+		}
+		if(amount < 0)
+			sub(amount);
+	}
+	
+	public void sub(int amount) //adds amount, loops
+	{
+		if(amount > 0)
+		{
+			for(int i = 0; i < amount; i++)
+			{
+				whatIsStored--;
+				if(whatIsStored == -2)
+					whatIsStored = 1;
+			}
+		}
+		if(amount < 0)
+			add(amount);
+	}
+	
 	public int get() //returns the stored value
 	{
 		return whatIsStored;
