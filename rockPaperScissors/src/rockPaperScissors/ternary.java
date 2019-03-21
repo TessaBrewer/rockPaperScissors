@@ -3,13 +3,13 @@ import java.util.*;
 public class ternary //-1, 0, and 1
 {
 	static Random random = new Random();
-	public int whatIsStored = 0;
+	private int whatIsStored = 0;
 	
 	public ternary(int start)
 	{
 		set(start);
 	}
-	
+
 	public ternary()
 	{
 	}
@@ -56,7 +56,7 @@ public class ternary //-1, 0, and 1
 			sub(amount);
 		}
 	}
-	
+
 	public void sub(int amount) //adds amount, loops
 	{
 		if(amount > 0)
@@ -71,12 +71,12 @@ public class ternary //-1, 0, and 1
 		if(amount < 0)
 			add(amount);
 	}
-	
+
 	public int get() //returns the stored value
 	{
 		return whatIsStored;
 	}
-	
+
 	public int get(int offset)
 	{
 		if(offset > 0)
