@@ -4,7 +4,7 @@ public class ternary //-1, 0, and 1
 {
 	static Random random = new Random();
 	private int whatIsStored = 0;
-	
+
 	public ternary(int start)
 	{
 		set(start);
@@ -52,8 +52,7 @@ public class ternary //-1, 0, and 1
 		}
 		if(amount < 0)
 		{
-			amount *= -1;
-			sub(amount);
+			sub(amount * -1);
 		}
 	}
 
@@ -69,7 +68,7 @@ public class ternary //-1, 0, and 1
 			}
 		}
 		if(amount < 0)
-			add(amount);
+			add(amount * -1);
 	}
 
 	public int get() //returns the stored value
